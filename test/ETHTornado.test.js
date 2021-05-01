@@ -110,6 +110,7 @@ contract('ETHTornado', (accounts) => {
     })
   })
 
+  // Use Node version >=12
   describe('snark proof verification on js side', () => {
     it('should detect tampering', async () => {
       const deposit = generateDeposit()
