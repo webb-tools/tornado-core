@@ -21,6 +21,8 @@ Run these commands to build the circuit and get tests to work with your own keys
 1. `ganache-cli -i 1337`
 2. `truffle test`
 
+## Generate types for your contracts
 
+1. `npm run build:types`
 
 
