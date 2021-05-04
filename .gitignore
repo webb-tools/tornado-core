@@ -1,4 +1,4 @@
-build
+build/circuits
 .vscode
 /index.js
 Tornado_flat.sol
