@@ -1,14 +1,3 @@
-// https://tornado.cash
-/*
- * d888888P                                           dP              a88888b.                   dP
- *    88                                              88             d8'   `88                   88
- *    88    .d8888b. 88d888b. 88d888b. .d8888b. .d888b88 .d8888b.    88        .d8888b. .d8888b. 88d888b.
- *    88    88'  `88 88'  `88 88'  `88 88'  `88 88'  `88 88'  `88    88        88'  `88 Y8ooooo. 88'  `88
- *    88    88.  .88 88       88    88 88.  .88 88.  .88 88.  .88 dP Y8.   .88 88.  .88       88 88    88
- *    dP    `88888P' dP       dP    dP `88888P8 `88888P8 `88888P' 88  Y88888P' `88888P8 `88888P' dP    dP
- * ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
- */
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
@@ -19,7 +8,7 @@ interface IVerifier {
   function verifyProof(bytes memory _proof, uint256[6] memory _input) external returns (bool);
 }
 
-abstract contract Tornado is MerkleTreeWithHistory, ReentrancyGuard {
+abstract contract Anchor is MerkleTreeWithHistory, ReentrancyGuard {
   IVerifier public immutable verifier;
   uint256 public immutable denomination;
 
