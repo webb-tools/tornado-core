@@ -1,6 +1,6 @@
 /* global artifacts */
 require('dotenv').config({ path: '../.env' })
-const ERC20Tornado = artifacts.require('ERC20Tornado')
+const ERC20Anchor = artifacts.require('ERC20Anchor')
 const Verifier = artifacts.require('Verifier')
 const Hasher = artifacts.require('Hasher')
 const ERC20Mock = artifacts.require('ERC20Mock')
@@ -15,14 +15,14 @@ module.exports = function (deployer) {
       const tokenInstance = await deployer.deploy(ERC20Mock)
       token = tokenInstance.address
     }
-    const tornado = await deployer.deploy(
-      ERC20Tornado,
+    const anchor = await deployer.deploy(
+      ERC20Anchor,
       verifier.address,
       hasher.address,
       TOKEN_AMOUNT,
       MERKLE_TREE_HEIGHT,
       token,
     )
-    console.log('ERC20Tornado address', tornado.address)
+    console.log('ERC20Anchor address', anchor.address)
   })
 }

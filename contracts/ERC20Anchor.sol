@@ -1,22 +1,11 @@
-// https://tornado.cash
-/*
- * d888888P                                           dP              a88888b.                   dP
- *    88                                              88             d8'   `88                   88
- *    88    .d8888b. 88d888b. 88d888b. .d8888b. .d888b88 .d8888b.    88        .d8888b. .d8888b. 88d888b.
- *    88    88'  `88 88'  `88 88'  `88 88'  `88 88'  `88 88'  `88    88        88'  `88 Y8ooooo. 88'  `88
- *    88    88.  .88 88       88    88 88.  .88 88.  .88 88.  .88 dP Y8.   .88 88.  .88       88 88    88
- *    dP    `88888P' dP       dP    dP `88888P8 `88888P8 `88888P' 88  Y88888P' `88888P8 `88888P' dP    dP
- * ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
- */
-
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.7.0;
 
-import "./Tornado.sol";
+import "./Anchor.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 
-contract ERC20Tornado is Tornado {
+contract ERC20Anchor is Anchor {
   using SafeERC20 for IERC20;
   IERC20 public immutable token;
 
@@ -26,7 +15,7 @@ contract ERC20Tornado is Tornado {
     uint256 _denomination,
     uint32 _merkleTreeHeight,
     IERC20 _token
-  ) Tornado(_verifier, _hasher, _denomination, _merkleTreeHeight) {
+  ) Anchor(_verifier, _hasher, _denomination, _merkleTreeHeight) {
     token = _token;
   }
 
