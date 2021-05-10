@@ -26,7 +26,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"internalType\":\"uint256[6]\",\"name\":\"_input\",\"type\":\"uint256[6]\"}],\"name\":\"verifyProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/Anchor.sol\":\"IVerifier\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/Anchor.sol\":{\"keccak256\":\"0x1a95d9c07d0e54e007b90fb1a5a8f8971c956684a117c334f75b5bc27ff822b4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://42c189209f7a6a779cd0207df4832664a8f7e37c40f5710715ce8d4bf54cc8f9\",\"dweb:/ipfs/QmY447tGaUDAQXQwReyAjVcURXTtQVsccFhak9VxgurY4K\"]},\"/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/MerkleTreeWithHistory.sol\":{\"keccak256\":\"0x0abefde6423ba3e21f380793ec5b061fd683c5a64da38a7b735510da6018c320\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://941250ecc9a42f2af9dd71989d0aa028faa30cdeeda6d66eb9944efc7a0c0b56\",\"dweb:/ipfs/QmekEu6s5HVVMiq6zRBdg8ubXBtQcn5HMxFduDdC1TazSx\"]},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"keccak256\":\"0x8bbbc2f5c10065ee272592ae0a7a6ceb23de2fbd81564ee0bb015ecf404d5f61\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b95e56c1640d0ef789fc5c16269e141e992f6c8ac97cc6d377bd3825e9cab182\",\"dweb:/ipfs/QmVzaxJZY51EhagrcNnkxoU6Uq17RhATe7aHvtkC6wUkgK\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"},{\"internalType\":\"uint256[6]\",\"name\":\"_input\",\"type\":\"uint256[6]\"}],\"name\":\"verifyProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/Anchor.sol\":\"IVerifier\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/Anchor.sol\":{\"keccak256\":\"0x1a95d9c07d0e54e007b90fb1a5a8f8971c956684a117c334f75b5bc27ff822b4\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://42c189209f7a6a779cd0207df4832664a8f7e37c40f5710715ce8d4bf54cc8f9\",\"dweb:/ipfs/QmY447tGaUDAQXQwReyAjVcURXTtQVsccFhak9VxgurY4K\"]},\"/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/MerkleTreeWithHistory.sol\":{\"keccak256\":\"0x0abefde6423ba3e21f380793ec5b061fd683c5a64da38a7b735510da6018c320\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://941250ecc9a42f2af9dd71989d0aa028faa30cdeeda6d66eb9944efc7a0c0b56\",\"dweb:/ipfs/QmekEu6s5HVVMiq6zRBdg8ubXBtQcn5HMxFduDdC1TazSx\"]},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"keccak256\":\"0x8bbbc2f5c10065ee272592ae0a7a6ceb23de2fbd81564ee0bb015ecf404d5f61\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://b95e56c1640d0ef789fc5c16269e141e992f6c8ac97cc6d377bd3825e9cab182\",\"dweb:/ipfs/QmVzaxJZY51EhagrcNnkxoU6Uq17RhATe7aHvtkC6wUkgK\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -35,9 +35,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.7.0;\n\nimport \"./MerkleTreeWithHistory.sol\";\nimport \"@openzeppelin/contracts/utils/ReentrancyGuard.sol\";\n\ninterface IVerifier {\n  function verifyProof(bytes memory _proof, uint256[6] memory _input) external returns (bool);\n}\n\nabstract contract Anchor is MerkleTreeWithHistory, ReentrancyGuard {\n  IVerifier public immutable verifier;\n  uint256 public immutable denomination;\n\n  mapping(bytes32 => bool) public nullifierHashes;\n  // we store all commitments just to prevent accidental deposits with the same commitment\n  mapping(bytes32 => bool) public commitments;\n\n  event Deposit(bytes32 indexed commitment, uint32 leafIndex, uint256 timestamp);\n  event Withdrawal(address to, bytes32 nullifierHash, address indexed relayer, uint256 fee);\n\n  /**\n    @dev The constructor\n    @param _verifier the address of SNARK verifier for this contract\n    @param _hasher the address of MiMC hash contract\n    @param _denomination transfer amount for each deposit\n    @param _merkleTreeHeight the height of deposits' Merkle Tree\n  */\n  constructor(\n    IVerifier _verifier,\n    IHasher _hasher,\n    uint256 _denomination,\n    uint32 _merkleTreeHeight\n  ) MerkleTreeWithHistory(_merkleTreeHeight, _hasher) {\n    require(_denomination > 0, \"denomination should be greater than 0\");\n    verifier = _verifier;\n    denomination = _denomination;\n  }\n\n  /**\n    @dev Deposit funds into the contract. The caller must send (for ETH) or approve (for ERC20) value equal to or `denomination` of this instance.\n    @param _commitment the note commitment, which is PedersenHash(nullifier + secret)\n  */\n  function deposit(bytes32 _commitment) external payable nonReentrant {\n    require(!commitments[_commitment], \"The commitment has been submitted\");\n\n    uint32 insertedIndex = _insert(_commitment);\n    commitments[_commitment] = true;\n    _processDeposit();\n\n    emit Deposit(_commitment, insertedIndex, block.timestamp);\n  }\n\n  /** @dev this function is defined in a child contract */\n  function _processDeposit() internal virtual;\n\n  /**\n    @dev Withdraw a deposit from the contract. `proof` is a zkSNARK proof data, and input is an array of circuit public inputs\n    `input` array consists of:\n      - merkle root of all deposits in the contract\n      - hash of unique deposit nullifier to prevent double spends\n      - the recipient of funds\n      - optional fee that goes to the transaction sender (usually a relay)\n  */\n  function withdraw(\n    bytes calldata _proof,\n    bytes32 _root,\n    bytes32 _nullifierHash,\n    address payable _recipient,\n    address payable _relayer,\n    uint256 _fee,\n    uint256 _refund\n  ) external payable nonReentrant {\n    require(_fee <= denomination, \"Fee exceeds transfer value\");\n    require(!nullifierHashes[_nullifierHash], \"The note has been already spent\");\n    require(isKnownRoot(_root), \"Cannot find your merkle root\"); // Make sure to use a recent one\n    require(\n      verifier.verifyProof(\n        _proof,\n        [uint256(_root), uint256(_nullifierHash), uint256(_recipient), uint256(_relayer), _fee, _refund]\n      ),\n      \"Invalid withdraw proof\"\n    );\n\n    nullifierHashes[_nullifierHash] = true;\n    _processWithdraw(_recipient, _relayer, _fee, _refund);\n    emit Withdrawal(_recipient, _nullifierHash, _relayer, _fee);\n  }\n\n  /** @dev this function is defined in a child contract */\n  function _processWithdraw(\n    address payable _recipient,\n    address payable _relayer,\n    uint256 _fee,\n    uint256 _refund\n  ) internal virtual;\n\n  /** @dev whether a note is already spent */\n  function isSpent(bytes32 _nullifierHash) public view returns (bool) {\n    return nullifierHashes[_nullifierHash];\n  }\n\n  /** @dev whether an array of notes is already spent */\n  function isSpentArray(bytes32[] calldata _nullifierHashes) external view returns (bool[] memory spent) {\n    spent = new bool[](_nullifierHashes.length);\n    for (uint256 i = 0; i < _nullifierHashes.length; i++) {\n      if (isSpent(_nullifierHashes[i])) {\n        spent[i] = true;\n      }\n    }\n  }\n}\n",
-  "sourcePath": "/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/Anchor.sol",
+  "sourcePath": "/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/Anchor.sol",
   "ast": {
-    "absolutePath": "/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/Anchor.sol",
+    "absolutePath": "/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/Anchor.sol",
     "exportedSymbols": {
       "Anchor": [
         330
@@ -71,7 +71,7 @@
         "src": "32:23:22"
       },
       {
-        "absolutePath": "/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/MerkleTreeWithHistory.sol",
+        "absolutePath": "/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/MerkleTreeWithHistory.sol",
         "file": "./MerkleTreeWithHistory.sol",
         "id": 46,
         "nodeType": "ImportDirective",
@@ -3624,7 +3624,7 @@
   },
   "legacyAST": {
     "attributes": {
-      "absolutePath": "/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/Anchor.sol",
+      "absolutePath": "/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/Anchor.sol",
       "exportedSymbols": {
         "Anchor": [
           330
@@ -3661,7 +3661,7 @@
       {
         "attributes": {
           "SourceUnit": 1128,
-          "absolutePath": "/Users/nathanbarnavon/workspace/anon/contracts/evm/anchor/contracts/MerkleTreeWithHistory.sol",
+          "absolutePath": "/Users/nathanbarnavon/workspace/test/anon/contracts/evm/anchor/contracts/MerkleTreeWithHistory.sol",
           "file": "./MerkleTreeWithHistory.sol",
           "scope": 331,
           "symbolAliases": [
@@ -7504,7 +7504,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.0",
-  "updatedAt": "2021-05-04T14:37:16.643Z",
+  "updatedAt": "2021-05-07T18:59:21.316Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

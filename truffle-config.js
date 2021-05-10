@@ -72,7 +72,7 @@ module.exports = {
       provider: () =>
         new HDWalletProvider(
           process.env.PRIVATE_KEY,
-          'https://rinkeby.infura.io/v3/97c8bf358b9942a9853fab1ba93dc5b3',
+          'https://rinkeby.infura.io/v3/fff68ca474dd4764a8d54dd14fa5519e',
         ),
       network_id: 4,
       gas: 6000000,
