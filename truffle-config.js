@@ -23,6 +23,16 @@ module.exports = {
     // You should run a client (like ganache-cli, geth or parity) in a separate terminal
     // tab if you use this network and you must also set the `host`, `port` and `network_id`
     // options below to some value.
+    anon: {
+      provider: () =>
+        new HDWalletProvider(
+          process.env.PRIVATE_KEY_SUB,
+          'http://localhost:9933',
+        ),
+      network_id: 42,
+      gas: 6000000,
+      gasPrice: utils.toWei('1', 'gwei'),
+    },
 
     development: {
       host: '127.0.0.1', // Localhost (default: none)
@@ -45,7 +55,7 @@ module.exports = {
     kovan: {
       provider: () =>
         new HDWalletProvider(
-          process.env.PRIVATE_KEY,
+          process.env.PRIVATE_KEY_ETH,
           'https://kovan.infura.io/v3/97c8bf358b9942a9853fab1ba93dc5b3',
         ),
       network_id: 42,
@@ -58,7 +68,7 @@ module.exports = {
     goerli: {
       provider: () =>
         new HDWalletProvider(
-          process.env.PRIVATE_KEY,
+          process.env.PRIVATE_KEY_ETH,
           'https://goerli.infura.io/v3/d34c08f2cb7c4111b645d06ac7e35ba8',
         ),
       network_id: 5,
@@ -71,7 +81,7 @@ module.exports = {
     rinkeby: {
       provider: () =>
         new HDWalletProvider(
-          process.env.PRIVATE_KEY,
+          process.env.PRIVATE_KEY_ETH,
           'https://rinkeby.infura.io/v3/fff68ca474dd4764a8d54dd14fa5519e',
         ),
       network_id: 4,
@@ -82,7 +92,7 @@ module.exports = {
       skipDryRun: true,
     },
     mainnet: {
-      provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, 'http://ethereum-rpc.trustwalletapp.com'),
+      provider: () => new HDWalletProvider(process.env.PRIVATE_KEY_ETH, 'http://ethereum-rpc.trustwalletapp.com'),
       network_id: 1,
       gas: 6000000,
       gasPrice: utils.toWei('2', 'gwei'),
