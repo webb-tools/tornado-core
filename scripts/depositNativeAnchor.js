@@ -4,6 +4,7 @@ const snarkjs = require('snarkjs');
 const crypto = require('crypto');
 const circomlib = require('circomlib');
 const bigInt = snarkjs.bigInt
+const stringifyBigInts = require('websnark/tools/stringifybigint').stringifyBigInts
 
 function BNArrayToStringArray(array) {
     const arrayToPrint = [];
@@ -32,11 +33,11 @@ function generateDeposit() {
         secret: rbigint(31),
         nullifier: rbigint(31),
     };
+    console.log('Nullifier: ' + stringifyBigInts(deposit.nullifier));
+    console.log('Secret: ' + stringifyBigInts(deposit.secret));
     const preimage = Buffer.concat([deposit.nullifier.leInt2Buff(31), deposit.secret.leInt2Buff(31)]);
     const arrValues = BNArrayToStringArray(preimage);
-    console.log('The preimage for the commitment: ' + arrValues);
-    console.log('Nullifier: ' + toHexString(arrValues.slice(0,31)));
-    console.log('Secret: ' + toHexString(arrValues.slice(31,62)));
+    console.log('The preimage for the commitment: ' + toHexString(arrValues));
     deposit.commitment = pedersenHash(preimage);
     console.log('The commitment: ' + deposit.commitment);
     return deposit;

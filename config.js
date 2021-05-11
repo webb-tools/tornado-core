@@ -2,6 +2,16 @@ require('dotenv').config()
 
 module.exports = {
   deployments: {
+    rinkeby: {
+      eth: {
+        instanceAddress: {
+          0.1: '0x876eCe69618e8E8dd743250B036785813824D2D7',
+          1: undefined,
+        },
+        symbol: 'ETH',
+        decimals: 18,
+      },
+    },
     netId1: {
       eth: {
         instanceAddress: {
