@@ -40,6 +40,17 @@ module.exports = {
       network_id: '*', // Any network (default: none)
     },
 
+    edgeware: {
+      provider: () =>
+        new HDWalletProvider(
+          process.env.PRIVATE_KEY_SUB,
+          'http://localhost:9933',
+        ),
+      network_id: 2021,
+      gas: 6000000,
+      gasPrice: utils.toWei('1', 'gwei'),
+    },
+
     // Another network with more advanced options...
     // advanced: {
     //   port: 8777,             // Custom port

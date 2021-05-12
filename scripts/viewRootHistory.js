@@ -21,7 +21,7 @@ async function readRoots() {
 
     console.log(numRoots);
 
-    for(var i=0; i<numRoots; i++)
+    for(var i=0; i<=numRoots; i++)
     {
         const tmp_root = await merkleInstance.functions.roots(i);
         console.log(tmp_root);
