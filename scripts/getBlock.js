@@ -9,8 +9,8 @@ var blockNumber = process.argv[2]
 var output
 
 async function getPendingBlock() {
-    output = await web3.eth.getBlock(blockNumber);
-    console.log(output);
+  output = await web3.eth.getBlock(blockNumber);
+  console.log(output);
 }
 
 getPendingBlock()

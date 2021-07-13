@@ -78,6 +78,7 @@ async function runScript()
   let proofData = await websnarkUtils.genWitnessAndProve(groth16, input, circuit, proving_key);
   let result = snarkVerify(proofData);
   console.log(result);
+  return;
 }
 
 runScript()

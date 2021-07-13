@@ -6,20 +6,19 @@ const contractAddress = process.argv[2];
 let provider;
 
 if (process.env.USING_GANACHE) {
-    provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
+  provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
 }
 else {
-    provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
+  provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
 }
 
 async function getMerkleRoot() {
+  // This address should be the same if first transactions made from account[0] on
+  // `ganache-cli -m "congress island collect purity dentist team gas unlock nuclear pig combine sight"`
+  const nativeAnchorInstance = new ethers.Contract(contractAddress, nativeAnchorAbi.abi, provider);
 
-    // This address should be the same if first transactions made from account[0] on
-    // `ganache-cli -m "congress island collect purity dentist team gas unlock nuclear pig combine sight"`
-    const nativeAnchorInstance = new ethers.Contract(contractAddress, nativeAnchorAbi.abi, provider);
-
-    const result = await nativeAnchorInstance.getLastRoot();
-    console.log(result);
+  const result = await nativeAnchorInstance.getLastRoot();
+  console.log(result);
 }
 
 getMerkleRoot();
