@@ -23,7 +23,7 @@ const bigInt = snarkjs.bigInt
 const crypto = require('crypto')
 const circomlib = require('circomlib')
 const MerkleTree = require('../lib/MerkleTree')
-const ETH_AMOUNT=100000000000000000
+const NATIVE_AMOUNT=100000000000000000
 const MERKLE_TREE_HEIGHT=20
 
 const rbigint = (nbytes) => snarkjs.bigInt.leBuff2int(crypto.randomBytes(nbytes))
@@ -54,7 +54,7 @@ async function runScript()
   tree = new MerkleTree(levels, null, prefix);
   const recipient = getRandomRecipient();
   const deposit = generateDeposit();
-  const fee = bigInt(ETH_AMOUNT).shr(1) || bigInt(1e17);
+  const fee = bigInt(NATIVE_AMOUNT).shr(1) || bigInt(1e17);
   const refund = bigInt(0);
   const groth16 = await buildGroth16();
   const circuit = require('../build/circuits/withdraw.json');

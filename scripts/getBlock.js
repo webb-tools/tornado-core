@@ -3,7 +3,7 @@
 
 const Web3 = require('web3');
 
-const web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:9933'));
+const web3 = new Web3(new Web3.providers.HttpProvider(`${process.env.ENDPOINT}`));
 
 var blockNumber = process.argv[2]
 var output

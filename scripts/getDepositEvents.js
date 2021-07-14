@@ -2,14 +2,7 @@ const ethers = require("ethers");
 require("dotenv").config({ path: '../.env' });
 const anchorAbi = require("../build/contracts/Anchor.json");
 
-let provider;
-
-if (process.env.USING_GANACHE) {
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
-}
-else {
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
-}
+let provider = new ethers.providers.JsonRpcProvider(`${process.env.ENDPOINT}`);
 
 module.exports = async function getDepositEvents(contractAddress) {
   // Query the blockchain for all deposits that have happened

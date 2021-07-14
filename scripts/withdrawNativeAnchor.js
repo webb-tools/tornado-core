@@ -12,16 +12,8 @@ const bigInt = snarkjs.bigInt;
 const toHex = (number, length = 32) => 
   '0x' + (number instanceof Buffer ? number.toString('hex') : bigInt(number).toString(16)).padStart(length * 2, '0');
 
-let provider, privateKey;
-
-if (process.env.USING_GANACHE) {
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
-  privateKey = process.env.PRIVATE_KEY_ETH;
-}
-else {
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
-  privateKey = process.env.PRIVATE_KEY_SUB;
-}
+const provider = new ethers.providers.JsonRpcProvider(`${process.env.ENDPOINT}`);
+const privateKey = process.env.PRIVATE_KEY;
 
 // Accept as command-line input necessary values (contract address, note, recipient)
 const contractAddress = process.argv[2];

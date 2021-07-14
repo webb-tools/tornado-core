@@ -12,7 +12,7 @@ const hasherImpl = require('../lib/MiMC')
 const snarkjs = require('snarkjs')
 const bigInt = snarkjs.bigInt
 
-const { ETH_AMOUNT, MERKLE_TREE_HEIGHT } = process.env
+const { NATIVE_AMOUNT, MERKLE_TREE_HEIGHT } = process.env
 
 // eslint-disable-next-line no-unused-vars
 function BNArrayToStringArray(array) {
@@ -36,7 +36,7 @@ contract('MerkleTreeWithHistory', (accounts) => {
   let levels = MERKLE_TREE_HEIGHT || 16
   const sender = accounts[0]
   // eslint-disable-next-line no-unused-vars
-  const value = ETH_AMOUNT || '1000000000000000000'
+  const value = NATIVE_AMOUNT || '1000000000000000000'
   let snapshotId
   let prefix = 'test'
   let tree

@@ -1,15 +1,8 @@
 const ethers = require('ethers');
 require('dotenv').config({ path: '../.env' });
 
-let provider;
-if (process.env.USING_GANACHE)
-{
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
-}
-else
-{
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
-}
+let provider = new ethers.providers.JsonRpcProvider(`${process.env.ENDPOINT}`);
+
 const contractAddress = process.argv[2];
 
 const anchorAbi = require("../build/contracts/Anchor.json");

@@ -3,14 +3,7 @@ const nativeAnchorAbi = require('../build/contracts/NativeAnchor.json');
 require('dotenv').config({ path: '../.env' });
 
 const contractAddress = process.argv[2];
-let provider;
-
-if (process.env.USING_GANACHE) {
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
-}
-else {
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
-}
+let provider = new ethers.providers.JsonRpcProvider(`${process.env.ENDPOINT}`);
 
 async function getMerkleRoot() {
   // This address should be the same if first transactions made from account[0] on

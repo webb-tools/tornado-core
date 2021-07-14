@@ -6,7 +6,7 @@ const { toBN, randomHex } = require('web3-utils')
 const { takeSnapshot, revertSnapshot } = require('../lib/ganacheHelper')
 
 const Anchor = artifacts.require('./NativeAnchor.sol')
-const { ETH_AMOUNT, MERKLE_TREE_HEIGHT } = process.env
+const { NATIVE_AMOUNT, MERKLE_TREE_HEIGHT } = process.env
 
 const websnarkUtils = require('websnark/src/utils')
 const buildGroth16 = require('websnark/src/groth16')
@@ -57,11 +57,11 @@ contract('NativeAnchor', (accounts) => {
   const sender = accounts[0]
   const operator = accounts[0]
   const levels = MERKLE_TREE_HEIGHT || 16
-  const value = ETH_AMOUNT || '1000000000000000000' // 1 ether
+  const value = NATIVE_AMOUNT || '1000000000000000000' // 1 ether
   let snapshotId
   let prefix = 'test'
   let tree
-  const fee = bigInt(ETH_AMOUNT).shr(1) || bigInt(1e17)
+  const fee = bigInt(NATIVE_AMOUNT).shr(1) || bigInt(1e17)
   const refund = bigInt(0)
   const recipient = getRandomRecipient()
   const relayer = accounts[1]

@@ -15,18 +15,9 @@ if (!process.argv[2] || !ethers.utils.isAddress(process.argv[2])) {
 }
 
 const nativeAnchorAbi = require('../build/contracts/NativeAnchor.json');
-let provider, privateKey;
 
-if (process.env.USING_GANACHE)
-{
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
-  privateKey = process.env.PRIVATE_KEY_ETH;
-}
-else
-{
-  provider = new ethers.providers.JsonRpcProvider('http://localhost:9933');
-  privateKey = process.env.PRIVATE_KEY_SUB;
-}
+const provider = new ethers.providers.JsonRpcProvider(`${process.env.ENDPOINT}`);
+const privateKey = process.env.PRIVATE_KEY;
 
 const wallet = new ethers.Wallet(privateKey, provider);
 const contractAddress = process.argv[2];
@@ -38,9 +29,10 @@ async function deposit() {
   // This contract address should be the same if first transactions made from account[0] on
   // `ganache-cli -m "congress island collect purity dentist team gas unlock nuclear pig combine sight"`
   const nativeAnchorInstance = new ethers.Contract(contractAddress, nativeAnchorAbi.abi, wallet);
+  const denomination = await nativeAnchorInstance.functions.denomination();
 
   // Value is taken from contract migration (mixer deposit denomination) and converted to base16
-  await nativeAnchorInstance.deposit(toFixedHex(deposit.commitment), { value: '0x16345785D8A0000' });
+  await nativeAnchorInstance.deposit(toFixedHex(deposit.commitment), { value: denomination.toString() });
 
   // return the note of the deposit, contains secret info
   return `anchor-eth-.1-${chainId}-${toFixedHex(deposit.preimage, 62)}`
