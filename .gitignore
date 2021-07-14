@@ -1,7 +1,10 @@
-build
 .vscode
 /index.js
 Tornado_flat.sol
+
+# after a local build, lockfiles are updated and cause subsequent builds to fail for some reason
+package-lock.json
+yarn.lock
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
