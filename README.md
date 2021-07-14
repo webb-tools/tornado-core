@@ -1,14 +1,14 @@
 <h1 align="center">Tornado Core</h1>
 
 <p align="center">
-    <strong>Tornado Core Functionality</strong>
+    <strong>Tornado Core Functionality 🌪️</strong>
     <br />
     <sub>Mixers (Anchors) for the EVM</sub>
 </p>
 
 <br />
 
-## Initialization
+## Build 👷
 
 The repo has been setup with the proving and verifier keys generated from tornado cash's trusted setup ceremony.
 
@@ -38,14 +38,11 @@ If the script returns 'true', the proof generation and verification is successfu
 
 1. `npm run build:types`
 
-## Configuration
+## Configuration 🛠️
 
-Our scripts and tests require the configuration of a `.env` file for operation. This also allows for quick changes of networks such as 
+Our scripts and tests require the configuration of a `.env` file for operation. This also allows for quick changes of networks between ganache and harmony, or any other evm. An example `.env.example` file exists in this repo for reference.
 
-1. `ganache-cli -m "congress island collect purity dentist team gas unlock nuclear pig combine sight"`
-2. `truffle migrate`
-
-## Interact with the Contracts
+## Interact with the Contracts 
 
 Some scripts have been provided in the `scripts/` directory to interact with mixer contracts.
 To use these scripts, `cd scripts` and run `node <script> <...args>`. 
@@ -57,7 +54,7 @@ A few that scripts you might find useful are below:
 
 - `withdrawNativeAnchor.js <anchor address> <secret note> <recipient>`: This script will withdraw from the mixer at the address given the secret note and recipient.
 
-#### Deployed Contract Instances
+## Deployed Contract Instances
 
 1. ganache-cli -m "congress island collect purity dentist team gas unlock nuclear pig combine sight"
 ``` 
@@ -85,3 +82,17 @@ A few that scripts you might find useful are below:
       NativeAnchor: 0x8a4D675dcC71A7387a3C4f27d7D78834369b9542
     }
 ```
+
+## License
+
+<sup>
+Licensed under <a href="LICENSE">GNU General Public License</a>.
+</sup>
+
+<br/>
+
+<sub>
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in this codebase by you, as defined in the GNU General Public License, shall
+be licensed as above, without any additional terms or conditions.
+</sub>
